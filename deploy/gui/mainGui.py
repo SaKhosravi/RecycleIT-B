@@ -8,16 +8,31 @@ except ImportError:
     import sip
 from PyQt5 import QtWidgets, uic
 import sys
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+import cv2
 
 
-class MainUi(QtWidgets.QMainWindow):
+class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
-        super(MainUi, self).__init__()  # Call the inherited classes __init__ method
+        super(MainWindow, self).__init__()  # Call the inherited classes __init__ method
         self.ui = uic.loadUi(self.__getPath(), self)  # Load the .ui file
-        self.create
+        self.VBL = QVBoxLayout()
+
+        self.FeedLabel = QLabel()
+        self.VBL.addWidget(self.FeedLabel)
+        self.setLayout(self.VBL)
+
+        self.worlker = Worker1()
+        self.worlker.start()
+        self.worlker.ImageUpdate.connect(self.ImageUpdateSlot)
         self.show()  # Show the GUI
         self.__defineWidgets()
         self.__clicker()
+
+    def ImageUpdateSlot(self, image):
+        self.FeedLabel.setPixmap(QPixmap.fromImage(image))
 
     def _addMenuBar(self):
         pass
@@ -35,12 +50,41 @@ class MainUi(QtWidgets.QMainWindow):
 
     def __clicker(self):
         self.action_Open_Model.triggered.connect(lambda: self.__menuBarListener("openModel"))
+        self.action_Quit.triggered.connect(lambda: self.__menuBarListener("action_Quit"))
 
     def __menuBarListener(self, state):
         print(state)
+        if state == "action_Quit":
+            sys.exit()
+
+    def __quitApp(self):
+        sys.exit()
+
+
+class Worker1(QThread):
+    ImageUpdate = pyqtSignal(QImage)
+
+    def run(self):
+        self.ThreadActive = True
+        Capture = cv2.VideoCapture(0)
+        while self.ThreadActive:
+            ret, frame = Capture.read()
+            if ret:
+                image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                FlippedImage = cv2.flip(image, 1)
+                ConvertToQtFormat = QImage(FlippedImage.data,
+                                           FlippedImage.shape[1],
+                                           FlippedImage.shape[0],
+                                           QImage.Format_RGB888)
+                pic = ConvertToQtFormat.scaled(640, 480, Qt.KeepAspectRatio)
+                self.ImageUpdate.emit(pic)
+
+    def stop(self):
+        self.ThreadActive = False
+        self.quit()
 
 
 # initialize the app
 app = QtWidgets.QApplication(sys.argv)
-window = MainUi()
+window = MainWindow()
 app.exec_()

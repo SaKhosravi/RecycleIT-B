@@ -6,20 +6,20 @@
    <rect>
        <x>0</x>
        <y>0</y>
-       <width>347</width>
-       <height>401</height>
+       <width>585</width>
+       <height>521</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
-  </property>
-  <widget class="QWidget" name="centralwidget"/>
+     <property name="windowTitle">
+         <string>MainWindow</string>
+     </property>
+     <widget class="QWidget" name="centralwidget"/>
      <widget class="QMenuBar" name="menubar">
          <property name="geometry">
              <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>347</width>
+                 <width>585</width>
                  <height>22</height>
              </rect>
          </property>
