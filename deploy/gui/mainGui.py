@@ -18,24 +18,14 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()  # Call the inherited classes __init__ method
         self.ui = uic.loadUi(self.__getPath(), self)  # Load the .ui file
-        self.VBL = QVBoxLayout()
-
-        self.FeedLabel = QLabel()
-        self.VBL.addWidget(self.FeedLabel)
-        self.setLayout(self.VBL)
-
-        self.worlker = Worker1()
-        self.worlker.start()
-        self.worlker.ImageUpdate.connect(self.ImageUpdateSlot)
-        self.show()  # Show the GUI
         self.__defineWidgets()
-        self.__clicker()
+
+        self.worker = Worker1()
+        self.worker.start()
+        self.worker.ImageUpdate.connect(self.ImageUpdateSlot)
 
     def ImageUpdateSlot(self, image):
         self.FeedLabel.setPixmap(QPixmap.fromImage(image))
-
-    def _addMenuBar(self):
-        pass
 
     def __getPath(self, ):
         path = os.getcwd().split("gui")[0]
@@ -45,8 +35,7 @@ class MainWindow(QtWidgets.QMainWindow):
         return path
 
     def __defineWidgets(self, ):
-        # self.button_brows = self.findChild(QPushButton, "btn_brws")
-        pass
+        self.FeedLabel = self.findChild(QLabel, "q_camera_label")
 
     def __clicker(self):
         self.action_Open_Model.triggered.connect(lambda: self.__menuBarListener("openModel"))
@@ -87,4 +76,5 @@ class Worker1(QThread):
 # initialize the app
 app = QtWidgets.QApplication(sys.argv)
 window = MainWindow()
+window.show()
 app.exec_()

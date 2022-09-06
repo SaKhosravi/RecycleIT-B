@@ -2,24 +2,38 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
-  <property name="geometry">
-   <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>585</width>
-       <height>521</height>
-   </rect>
-  </property>
+     <property name="geometry">
+         <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>1075</width>
+             <height>515</height>
+         </rect>
+     </property>
      <property name="windowTitle">
          <string>MainWindow</string>
      </property>
-     <widget class="QWidget" name="centralwidget"/>
+     <widget class="QWidget" name="centralwidget">
+         <widget class="QLabel" name="q_camera_label">
+             <property name="geometry">
+                 <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>771</width>
+                     <height>451</height>
+                 </rect>
+             </property>
+             <property name="text">
+                 <string>TextLabel</string>
+             </property>
+         </widget>
+     </widget>
      <widget class="QMenuBar" name="menubar">
          <property name="geometry">
              <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>585</width>
+                 <width>1075</width>
                  <height>22</height>
              </rect>
          </property>
