@@ -13,11 +13,13 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 import cv2
-
+from deploy.database.database import DataBase
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()  # Call the inherited classes __init__ method
+
+        self.db = DataBase()
         self.ui = uic.loadUi(self.__getPath(), self)  # Load the .ui file
         self.__defineWidgets()
 
