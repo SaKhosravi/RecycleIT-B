@@ -1,5 +1,6 @@
 import os
 
+import qdarktheme
 from PyQt5.QtWidgets import QPushButton, QAction, QMenu
 
 try:
@@ -25,7 +26,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.worker.ImageUpdate.connect(self.ImageUpdateSlot)
 
     def ImageUpdateSlot(self, image):
-        self.FeedLabel.setPixmap(QPixmap.fromImage(image))
+        self.ui.q_camera_label.setPixmap(QPixmap.fromImage(image))
 
     def __getPath(self, ):
         path = os.getcwd().split("gui")[0]
@@ -76,5 +77,7 @@ class Worker1(QThread):
 # initialize the app
 app = QtWidgets.QApplication(sys.argv)
 window = MainWindow()
+# app.setStyleSheet(qdarktheme.load_stylesheet())
+app.setStyleSheet(qdarktheme.load_stylesheet("light"))
 window.show()
 app.exec_()

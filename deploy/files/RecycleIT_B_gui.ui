@@ -6,34 +6,62 @@
          <rect>
              <x>0</x>
              <y>0</y>
-             <width>1075</width>
-             <height>515</height>
+             <width>718</width>
+             <height>517</height>
          </rect>
      </property>
      <property name="windowTitle">
          <string>MainWindow</string>
      </property>
      <widget class="QWidget" name="centralwidget">
-         <widget class="QLabel" name="q_camera_label">
-             <property name="geometry">
-                 <rect>
-                     <x>0</x>
-                     <y>0</y>
-                     <width>771</width>
-                     <height>451</height>
-                 </rect>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <property name="spacing">
+                 <number>3</number>
              </property>
-             <property name="text">
-                 <string>TextLabel</string>
+             <property name="leftMargin">
+                 <number>3</number>
              </property>
-         </widget>
+             <property name="topMargin">
+                 <number>3</number>
+             </property>
+             <property name="rightMargin">
+                 <number>3</number>
+             </property>
+             <property name="bottomMargin">
+                 <number>3</number>
+             </property>
+             <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout" stretch="4,3">
+                     <item>
+                         <layout class="QVBoxLayout" name="verticalLayout">
+                             <item>
+                                 <widget class="QLabel" name="q_camera_label">
+                                     <property name="sizePolicy">
+                                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                                             <horstretch>0</horstretch>
+                                             <verstretch>0</verstretch>
+                                         </sizepolicy>
+                                     </property>
+                                     <property name="text">
+                                         <string/>
+                                     </property>
+                                 </widget>
+                             </item>
+                         </layout>
+                     </item>
+                     <item>
+                         <layout class="QGridLayout" name="gridLayout"/>
+                     </item>
+                 </layout>
+             </item>
+         </layout>
      </widget>
      <widget class="QMenuBar" name="menubar">
          <property name="geometry">
              <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1075</width>
+                 <width>718</width>
                  <height>22</height>
              </rect>
          </property>
@@ -63,17 +91,6 @@
          <addaction name="menu_Help"/>
      </widget>
      <widget class="QStatusBar" name="statusbar"/>
-     <widget class="QToolBar" name="toolBar_2">
-         <property name="windowTitle">
-             <string>toolBar_2</string>
-         </property>
-         <attribute name="toolBarArea">
-             <enum>LeftToolBarArea</enum>
-         </attribute>
-         <attribute name="toolBarBreak">
-             <bool>false</bool>
-         </attribute>
-     </widget>
      <widget class="QToolBar" name="toolBar">
          <property name="windowTitle">
              <string>toolBar</string>
@@ -84,7 +101,6 @@
          <attribute name="toolBarBreak">
              <bool>false</bool>
          </attribute>
-         <addaction name="actionplay"/>
      </widget>
      <action name="action_Open_Model">
          <property name="text">
@@ -114,11 +130,6 @@
      <action name="actionAll">
          <property name="text">
              <string>All</string>
-         </property>
-     </action>
-     <action name="actionplay">
-         <property name="text">
-             <string>play</string>
          </property>
      </action>
  </widget>
