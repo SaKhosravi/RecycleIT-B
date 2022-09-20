@@ -32,7 +32,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def __getPath(self, ):
         path = os.getcwd().split("gui")[0]
-        path = path + os.sep + "files" + os.sep + "RecycleIT_B_gui.ui"
+        path = path + "files" + os.sep + "RecycleIT_B_gui.ui"
         if os.sep == "\\":
             path.replace("/", "\\")
         return path
